@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Flavor Haven | Modern Restaurant</title>
+  <meta name="description" content="Experience culinary excellence at Flavor Haven. Fresh ingredients, signature dishes, and a cozy ambiance. Order now or visit us today!">
+  <meta name="keywords" content="restaurant, food, dining, modern cuisine, order online, gallery">
+  <meta name="author" content="Slitehub">
+  <!-- Preconnect for fast loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefaf5;
+      color: #2d2a24;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, .logo, .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navigation */
+    nav {
+      background: #fffcf9;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(2px);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #c17b4c;
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      color: #2d2a24;
+      font-weight: 400;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #3a322a;
+      transition: color 0.2s;
+      font-size: 1rem;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #c17b4c;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #2d2a24;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-block;
+      background-color: #c17b4c;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .btn-primary:hover {
+      background-color: #a56238;
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #c17b4c;
+      color: #c17b4c;
+      padding: 0.7rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn-outline:hover {
+      background: #c17b4c;
+      color: white;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(97deg, #f9ede2 0%, #fef5ea 100%);
+      padding: 4rem 0 5rem;
+    }
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .hero-content {
+      flex: 1;
+    }
+    .hero-title {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: #2d2a24;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #5a5046;
+      margin-bottom: 2rem;
+      max-width: 90%;
+    }
+    .hero-image {
+      flex: 1;
+      text-align: center;
+    }
+    .hero-image img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 32px;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+      object-fit: cover;
+    }
+    .featured-dishes {
+      padding: 4rem 0;
+      background: white;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: #2d2a24;
+    }
+    .cards {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .dish-card {
+      background: #fffaf5;
+      border-radius: 28px;
+      overflow: hidden;
+      flex: 1 1 260px;
+      transition: 0.2s;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+      border: 1px solid #f0e4d8;
+    }
+    .dish-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .dish-info {
+      padding: 1.2rem;
+    }
+    .dish-info h3 {
+      font-size: 1.3rem;
+    }
+    .dish-info p {
+      color: #6b5b4e;
+      margin: 0.5rem 0;
+    }
+    .price {
+      font-weight: 700;
+      color: #c17b4c;
+      font-size: 1.2rem;
+    }
+    /* about */
+    .about-story, .team-section {
+      padding: 3rem 0;
+    }
+    .grid-2 {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .story-text {
+      flex: 1;
+    }
+    .story-img {
+      flex: 1;
+    }
+    .story-img img {
+      width: 100%;
+      border-radius: 28px;
+      object-fit: cover;
+    }
+    .team-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .team-member {
+      text-align: center;
+      flex: 1 1 180px;
+    }
+    .team-member img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    /* menu page */
+    .menu-categories {
+      padding: 3rem 0;
+    }
+    .category {
+      margin-bottom: 2.5rem;
+    }
+    .category h3 {
+      font-size: 1.8rem;
+      border-left: 5px solid #c17b4c;
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed #e2d4ca;
+      padding: 0.8rem 0;
+    }
+    .item-name {
+      font-weight: 600;
+    }
+    .item-price {
+      color: #c17b4c;
+      font-weight: 700;
+    }
+    /* gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin: 2rem 0;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    }
+    /* contact */
+    .contact-section {
+      padding: 3rem 0;
+    }
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+    }
+    .contact-info, .contact-form {
+      flex: 1;
+      background: white;
+      padding: 1.8rem;
+      border-radius: 32px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      border: 1px solid #f0e2d6;
+    }
+    .contact-info i {
+      color: #c17b4c;
+      width: 32px;
+      font-size: 1.3rem;
+    }
+    .contact-info p {
+      margin: 1rem 0;
+    }
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: white;
+      padding: 0.7rem 1.4rem;
+      border-radius: 40px;
+      text-decoration: none;
+      margin: 1rem 0;
+      font-weight: 600;
+    }
+    .social-links {
+      margin-top: 1.5rem;
+    }
+    .social-links a {
+      font-size: 1.7rem;
+      margin-right: 1rem;
+      color: #5a4c3e;
+      transition: 0.2s;
+    }
+    .social-links a:hover {
+      color: #c17b4c;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0 1rem;
+      border: 1px solid #e2cfc0;
+      border-radius: 24px;
+      font-family: inherit;
+      background: #fefaf7;
+    }
+    /* footer */
+    footer {
+      background: #2b2620;
+      color: #dad2ca;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    footer p {
+      margin: 0.3rem 0;
+    }
+    /* responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: white;
+        width: 80%;
+        height: calc(100vh - 70px);
+        padding: 2rem;
+        box-shadow: 2px 0 12px rgba(0,0,0,0.05);
+        transition: 0.3s;
+        gap: 1.8rem;
+        z-index: 999;
+      }
+      .nav-links.active {
+        left: 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      .hero-grid {
+        flex-direction: column;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+    }
+    .active-page {
+      color: #c17b4c;
+      font-weight: 700;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-container">
+    <div class="logo">Flavor<span>Haven</span></div>
+    <div class="menu-toggle" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" data-page="home">Home</a></li>
+      <li><a href="about.html" data-page="about">About Us</a></li>
+      <li><a href="menu.html" data-page="menu">Menu</a></li>
+      <li><a href="gallery.html" data-page="gallery">Gallery</a></li>
+      <li><a href="contact.html" data-page="contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="app-root">
+  <!-- Dynamic content will be injected here -->
+</main>
+
+<footer>
+  <p>© 2025 Flavor Haven — Where taste meets elegance.</p>
+  <p>Website Designed by Slitehub</p>
+</footer>
+
+<script>
+  // Page data with content, images (Unsplash placeholders - high-quality food/restaurant)
+  const pages = {
+    home: {
+      title: "Home",
+      render: () => `
+        <section class="hero">
+          <div class="container hero-grid">
+            <div class="hero-content">
+              <h1 class="hero-title">Savor the Art of Fine Dining</h1>
+              <p class="hero-sub">Authentic flavors, locally sourced ingredients, and a warm ambiance. Experience the heart of modern cuisine.</p>
+              <a href="contact.html" class="btn-primary">Order Now <i class="fas fa-arrow-right"></i></a>
+              <a href="menu.html" style="margin-left: 1rem;" class="btn-outline">Explore Menu</a>
+            </div>
+            <div class="hero-image">
+              <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hero dish" loading="lazy">
+            </div>
+          </div>
+        </section>
+        <section class="featured-dishes">
+          <div class="container">
+            <h2 class="section-title">Featured Dishes</h2>
+            <div class="cards">
+              <div class="dish-card"><img src="https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Grilled Salmon"><div class="dish-info"><h3>Grilled Salmon</h3><p>Lemon butter sauce, fresh herbs</p><div class="price">$24</div></div></div>
+              <div class="dish-card"><img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Truffle Pasta"><div class="dish-info"><h3>Truffle Pasta</h3><p>Wild mushrooms, parmesan</p><div class="price">$19</div></div></div>
+              <div class="dish-card"><img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Beef Burger"><div class="dish-info"><h3>Signature Burger</h3><p>Angus beef, caramelized onions</p><div class="price">$16</div></div></div>
+            </div>
+            <div style="text-align:center; margin-top:2rem;"><a href="contact.html" class="btn-primary">Contact Us for Reservations</a></div>
+          </div>
+        </section>
+      `
+    },
+    about: {
+      title: "About Us",
+      render: () => `
+        <div class="container">
+          <section class="about-story">
+            <div class="grid-2">
+              <div class="story-text"><h2>Our Story</h2><p>Founded in 2015, Flavor Haven began as a family dream to bring authentic, farm-to-table dining to the city. Every dish tells a story of passion, creativity, and love for local produce.</p><p>Over the years, we've become a gathering place for food lovers, celebrating community and culinary innovation.</p><h3 style="margin-top:1rem;">Mission & Vision</h3><p><strong>Mission:</strong> To create unforgettable experiences through exceptional food and genuine hospitality.<br><strong>Vision:</strong> To inspire a more delicious and sustainable world, one plate at a time.</p></div>
+              <div class="story-img"><img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Restaurant interior" loading="lazy"></div>
+            </div>
+          </section>
+          <section class="team-section"><h2 class="section-title">Meet Our Chefs</h2><div class="team-grid"><div class="team-member"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Chef"><h4>Marco Reyes</h4><p>Executive Chef</p></div><div class="team-member"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Chef"><h4>Elena Chen</h4><p>Pastry Chef</p></div><div class="team-member"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Chef"><h4>James Okafor</h4><p>Sous Chef</p></div></div></section>
+        </div>
+      `
+    },
+    menu: {
+      title: "Menu",
+      render: () => `
+        <div class="container menu-categories">
+          <h1 class="section-title">Our Menu</h1>
+          <div class="category"><h3>🍕 Starters</h3><div class="menu-items"><div class="menu-item"><span class="item-name">Bruschetta Trio</span><span class="item-price">$9</span></div><div class="menu-item"><span class="item-name">Crispy Calamari</span><span class="item-price">$12</span></div></div></div>
+          <div class="category"><h3>🍝 Main Courses</h3><div class="menu-items"><div class="menu-item"><span class="item-name">Grilled Ribeye Steak</span><span class="item-price">$32</span></div><div class="menu-item"><span class="item-name">Wild Mushroom Risotto</span><span class="item-price">$21</span></div><div class="menu-item"><span class="item-name">Seafood Paella</span><span class="item-price">$28</span></div><div class="menu-item"><span class="item-name">Herb Chicken</span><span class="item-price">$18</span></div></div></div>
+          <div class="category"><h3>🍰 Desserts</h3><div class="menu-items"><div class="menu-item"><span class="item-name">Molten Chocolate Cake</span><span class="item-price">$8</span></div><div class="menu-item"><span class="item-name">Tiramisu</span><span class="item-price">$7</span></div></div></div>
+          <div class="featured-meal" style="background:#f9ede2; border-radius:32px; padding:1.8rem; margin-top:2rem;"><h3>✨ Chef's Special ✨</h3><p>Lobster Thermidor with saffron sauce – $45</p><a href="contact.html" class="btn-primary" style="margin-top:1rem;">Reserve Table</a></div>
+        </div>
+      `
+    },
+    gallery: {
+      title: "Gallery",
+      render: () => `
+        <div class="container">
+          <h1 class="section-title">Moments at Flavor Haven</h1>
+          <div class="gallery-grid">
+            <img src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Food dish" loading="lazy">
+            <img src="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Restaurant interior" loading="lazy">
+            <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Dining outdoor" loading="lazy">
+            <img src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Chef plating" loading="lazy">
+            <img src="https://images.pexels.com/photos/4394610/pexels-photo-4394610.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Exterior restaurant" loading="lazy">
+            <img src="https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Cocktail bar" loading="lazy">
+          </div>
+        </div>
+      `
+    },
+    contact: {
+      title: "Contact",
+      render: () => `
+        <div class="container contact-section">
+          <h1 class="section-title">Get in Touch</h1>
+          <div class="contact-wrapper">
+            <div class="contact-info">
+              <p><i class="fas fa-phone-alt"></i> <strong>Call us:</strong> 08114095631</p>
+              <p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> <a href="https://wa.me/2348114095631?text=Hello%2C%20I'd%20like%20to%20order%20or%20book%20a%20table" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a></p>
+              <p><i class="fas fa-map-marker-alt"></i> 12 Culinary Street, Lagos, Nigeria</p>
+              <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              </div>
+            </div>
+            <div class="contact-form">
+              <form id="contactForm">
+                <label>Full Name</label><input type="text" id="name" placeholder="John Doe" required>
+                <label>Email</label><input type="email" id="email" placeholder="hello@example.com" required>
+                <label>Message</label><textarea rows="4" placeholder="Reservation or inquiry..."></textarea>
+                <button type="submit" class="btn-primary">Send Message</button>
+                <p id="formFeedback" style="margin-top:0.8rem; font-size:0.9rem;"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      `
+    }
+  };
+
+  let currentPage = "home";
+  const appRoot = document.getElementById("app-root");
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  function setActiveNav(pageId) {
+    navLinks.forEach(link => {
+      const href = link.getAttribute("href");
+      if (href && href.includes(pageId + ".html")) {
+        link.classList.add("active-page");
+      } else {
+        link.classList.remove("active-page");
+      }
+    });
+  }
+
+  function loadPage(pageId) {
+    if (!pages[pageId]) pageId = "home";
+    currentPage = pageId;
+    const page = pages[pageId];
+    document.title = `Flavor Haven | ${page.title}`;
+    appRoot.innerHTML = page.render();
+    setActiveNav(pageId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Attach contact form handler if contact page
+    if (pageId === "contact") {
+      const form = document.getElementById("contactForm");
+      if (form) {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const feedback = document.getElementById("formFeedback");
+          feedback.innerHTML = "✅ Thank you! We'll get back to you soon.";
+          feedback.style.color = "#c17b4c";
+          form.reset();
+          setTimeout(() => { feedback.innerHTML = ""; }, 3000);
+        });
+      }
+    }
+  }
+
+  // Router and navigation handling (SPA style to keep consistent, but we handle 5 pages)
+  function navigateTo(page) {
+    history.pushState({ page }, "", `/${page}.html`);
+    loadPage(page);
+  }
+
+  function handleNavClick(e) {
+    e.preventDefault();
+    const link = e.currentTarget;
+    const href = link.getAttribute("href");
+    let page = "home";
+    if (href.includes("a
